@@ -224,15 +224,17 @@ def main():
     logger = logging.getLogger(__name__).info
     config_file = r"config.toml"
     config = toml.load(config_file)
-    account = config.get("account")
-    if not account:
-        exit(1)
+    # account = config.get("account")
+    # if not account:
+    #     exit(1)
     if not (ua := config.get("browser").get("ua")):
         ua = random.choice(USER_AGENT)
         config["browser"]["ua"] = ua
     push = set_push_type()
     message = "联想签到: \n"
     for username, password in account.items():
+        username = os.getenv('USERNAME')
+        password = os.getenv('PASSWORD')
         session = login(username, password)
         if not session:
             continue
