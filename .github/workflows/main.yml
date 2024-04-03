@@ -20,4 +20,6 @@ jobs:
       - name: 'Install dependencies'
         run: pip3 install -r requirements.txt
       - name: 'Start Sign'
+        env:
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: python3 lenovo_sign.py
