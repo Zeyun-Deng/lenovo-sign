@@ -224,15 +224,21 @@ def main():
     logger = logging.getLogger(__name__).info
     config_file = r"config.toml"
     config = toml.load(config_file)
+    # 函数读取了 config.toml 文件，并将其内容转换为 Python 的字典类型
     account = config.get("account")
-    if not account:
-        exit(1)
+    # config 字典的键（key）是 TOML 文件中的各个部分（section），在这个例子中就是 account
+    # 每个键对应的值（value）也是一个字典，其键值对应 TOML 文件中 account 部分下的各个键值对。
+        password = os.getenv('GITHUB_KEY')
+    # if not account:
+    #     exit(1)
     if not (ua := config.get("browser").get("ua")):
         ua = random.choice(USER_AGENT)
         config["browser"]["ua"] = ua
     push = set_push_type()
     message = "联想签到: \n"
     for username, password in account.items():
+        username = os.getenv('USERNAME')
+        password = os.getenv('PASSWORD')
         session = login(username, password)
         if not session:
             continue
