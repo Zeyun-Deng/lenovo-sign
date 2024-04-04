@@ -23,4 +23,4 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: python3 lenovo_sign_no_toml.py
+        run: python3 lenovo_sign.py
