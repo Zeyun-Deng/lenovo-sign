@@ -5,6 +5,7 @@ import json
 import logging
 import random
 import re
+import os
 from sys import exit
 
 import smtplib
